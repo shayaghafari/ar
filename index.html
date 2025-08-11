@@ -3,152 +3,94 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>نمایش AR — Model Viewer</title>
-  <meta name="description" content="نمایش سه‌بعدی و AR با model-viewer — اسکن QR و باز کردن در موبایل" />
+  <title>AR بهبود یافته — Model Viewer</title>
   <meta name="theme-color" content="#101010" />
 
-  <!-- model-viewer (official) -->
+  <!-- model-viewer -->
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
   <style>
     :root{
       --bg:#0f1724;
       --card:#0b1220;
-      --muted:#a8b3c0;
       --accent:#10b981;
-      --glass: rgba(255,255,255,0.04);
+      --muted:#a8b3c0;
     }
-    html,body{height:100%;margin:0;font-family: "Vazirmatn", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;direction:rtl;background:linear-gradient(180deg,var(--bg),#081021);color:#e6eef6}
+    html,body{
+      height:100%;margin:0;
+      font-family: "Vazirmatn", system-ui;
+      background:linear-gradient(180deg,var(--bg),#081021);
+      color:#e6eef6;
+      direction:rtl;
+    }
     .container{max-width:1100px;margin:28px auto;padding:18px}
-    header{display:flex;align-items:center;gap:12px;margin-bottom:18px}
-    header h1{font-size:20px;margin:0}
-    .card{background:linear-gradient(180deg,var(--card),#07101a);border-radius:12px;padding:14px;box-shadow:0 8px 28px rgba(2,6,23,0.7);border:1px solid rgba(255,255,255,0.03)}
-    .viewer-wrap{margin-top:14px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.03)}
-    model-viewer{width:100%;height:70vh;min-height:420px;background:linear-gradient(180deg,#071428,#04101a);display:block}
-    .info-bar{display:flex;justify-content:space-between;align-items:center;padding:10px 6px;gap:12px}
-    .muted{color:var(--muted);font-size:13px}
-    .btn{background:var(--accent);color:#022;padding:8px 12px;border-radius:8px;border:none;cursor:pointer;font-weight:600}
-    .small{font-size:13px;padding:6px 9px}
-    .links{display:flex;gap:8px;align-items:center}
-    .status{padding:6px 10px;border-radius:8px;background:var(--glass);font-size:13px;color:var(--muted)}
-    .instructions{margin-top:12px;color:var(--muted);font-size:14px;line-height:1.5}
-    .footer{margin-top:18px;color:var(--muted);font-size:13px}
-    a.textlink{color:inherit;text-decoration:underline}
-    @media (max-width:768px){
-      model-viewer{height:62vh}
+    model-viewer{
+      width:100%;height:70vh;min-height:420px;
+      background:linear-gradient(180deg,#071428,#04101a);
+      border-radius:10px;overflow:hidden;
+    }
+    .loader {
+      position:absolute;inset:0;
+      display:flex;align-items:center;justify-content:center;
+      background:rgba(0,0,0,0.6);z-index:5;
+    }
+    .loader span {
+      border:4px solid transparent;border-top-color:var(--accent);
+      border-radius:50%;width:48px;height:48px;
+      animation:spin 1s linear infinite;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+    button.ar-btn {
+      background:var(--accent);color:#022;
+      padding:10px 16px;border:none;border-radius:8px;
+      font-weight:600;cursor:pointer;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="card" style="padding:10px 14px">
-        <h1>نمایش AR — مدل سه‌بعدی</h1>
-        <div class="muted">برای نمایش در AR کافی است روی موبایل باز کنید و دکمه‌ی AR را بزنید.</div>
-      </div>
-    </header>
+<div class="container">
 
-    <div class="card viewer-wrap">
-      <!-- model-viewer: src و ios-src در جاوااسکریپت ست می‌شوند -->
-      <model-viewer id="mv"
-        alt="3D model"
-        ar
-        ar-modes="webxr scene-viewer quick-look"
-        camera-controls
-        environment-image="neutral"
-        exposure="1"
-        shadow-intensity="1"
-        loading="eager">
-      </model-viewer>
+  <h1>🌟 نمایش AR — نسخه بهبود یافته</h1>
+  <p style="color:var(--muted)">برای بهترین نتیجه، در موبایل باز کنید و روی دکمه AR بزنید.</p>
 
-      <div class="info-bar card" style="margin-top:8px">
-        <div class="muted" id="modelName">مدل: <span id="mname">(بارگذاری نشده)</span></div>
+  <div style="position:relative">
+    <div class="loader" id="loader"><span></span></div>
 
-        <div class="links">
-          <div class="status" id="status">در انتظار لود مدل…</div>
-          <button class="btn small" id="reloadBtn">بارگذاری مجدد</button>
-        </div>
-      </div>
-
-      <div class="instructions card" id="instructions">
-        نکات تست:
-        <ul>
-          <li>فایل‌های مدل را در همان پوشهٔ `index.html` قرار بده: `model.glb` و در صورت نیاز `model.usdz`.</li>
-          <li>برای تست iOS حتماً `ios-src="model.usdz"` ست شده باشد (در این صفحه JS آن را می‌خواند).</li>
-          <li>می‌توانی با پارامتر URL مدل را تغییر بدهی: <code>?model=assets/chair.glb</code></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="footer">
-      اگر خواستی من می‌تونم مدل تستی GLB برات بسازم یا فایل USDZ رو هم تولید کنم و لینک دانلود بذارم.
-    </div>
+    <model-viewer id="mv"
+      alt="3D model"
+      src="model.glb"
+      ios-src="model.usdz"
+      ar
+      ar-modes="webxr scene-viewer quick-look"
+      ar-placement="floor"
+      ar-scale="fixed"
+      camera-controls
+      environment-image="https://modelviewer.dev/shared-assets/environments/moon_1k.hdr"
+      shadow-intensity="1"
+      shadow-softness="0.85"
+      exposure="1.2"
+      loading="eager">
+    </model-viewer>
   </div>
 
-  <script>
-    // --- تنظیم مسیر مدل از پارامتر URL یا fallback ---
-    (function(){
-      const params = new URLSearchParams(location.search);
-      // param name: model (مثال: ?model=assets/chair.glb)
-      const modelParam = params.get('model');
-      // پیش‌فرض‌ها
-      const defaultGLB = 'model.glb';
-      const defaultUSDZ = 'model.usdz';
+  <div style="margin-top:16px">
+    <button class="ar-btn" onclick="document.getElementById('mv').activateAR();">
+      🚀 مشاهده در واقعیت افزوده
+    </button>
+  </div>
+</div>
 
-      const mv = document.getElementById('mv');
-      const status = document.getElementById('status');
-      const mname = document.getElementById('mname');
-      const reloadBtn = document.getElementById('reloadBtn');
+<script>
+  const mv = document.getElementById('mv');
+  const loader = document.getElementById('loader');
 
-      // تابع کمکی برای تعیین نام فایل خوانا
-      function basename(path){
-        try { return path.split('/').pop(); } catch(e){ return path; }
-      }
+  mv.addEventListener('load', ()=>{
+    loader.style.display = 'none';
+  });
 
-      // مسیرهای نهایی
-      const glbPath = modelParam ? modelParam : defaultGLB;
-      const usdzPath = params.get('usdz') || defaultUSDZ;
-
-      // ست کردن صفت‌ها
-      mv.setAttribute('src', glbPath);
-      // اگر فایل usdz وجود داره، ios-src رو ست کن
-      mv.setAttribute('ios-src', usdzPath);
-
-      mname.textContent = basename(glbPath);
-
-      // بررسی نوع دستگاه برای نمایش راهنمایی
-      const ua = navigator.userAgent || '';
-      const isMobile = /Mobi|Android|iPhone/i.test(ua);
-
-      if(isMobile){
-        status.textContent = 'برای AR: دکمه‌ی AR را بزنید (ممکن است در کنار کنترل‌های مدل باشد).';
-      } else {
-        status.textContent = 'این صفحه روی دسکتاپ هم صحنهٔ سه‌بعدی را نشان می‌دهد؛ برای AR از موبایل استفاده کنید.';
-      }
-
-      // event handlers برای model-viewer
-      mv.addEventListener('load', ()=> {
-        status.textContent = 'مدل با موفقیت لود شد.';
-      });
-
-      mv.addEventListener('error', (ev)=> {
-        console.error('model-viewer error:', ev);
-        status.textContent = 'خطا در بارگذاری مدل — مسیر یا نام فایل را بررسی کنید.';
-      });
-
-      // دکمه ری‌لود (تست سریع)
-      reloadBtn.addEventListener('click', ()=> {
-        status.textContent = 'در حال بارگذاری مجدد…';
-        // کوچک‌سازی ترفند: تغییر src باعث لود مجدد می‌شود
-        const cur = mv.getAttribute('src');
-        // اضافه کردن پارامتر کش‌بایپس
-        const sep = cur.includes('?') ? '&' : '?';
-        mv.setAttribute('src', cur + sep + 't=' + Date.now());
-      });
-
-      // پیشنهاد: اگر بخواهید می‌توانیم وجود فایل usdz را با یک درخواست HEAD بررسی کنیم
-      // اما در محیط Netlify/Static ممکن است لازم باشد CORS تنظیم شود؛ این نسخه ساده است.
-    })();
-  </script>
+  mv.addEventListener('error', ()=>{
+    loader.innerHTML = "<p style='color:white'>⚠️ خطا در بارگذاری مدل</p>";
+  });
+</script>
 </body>
 </html>
