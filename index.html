@@ -3,86 +3,68 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>AR بهبود یافته — Model Viewer</title>
+  <title>AR چندمدلی — Model Viewer</title>
   <meta name="theme-color" content="#101010" />
-
-  <!-- model-viewer -->
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
   <style>
-    :root{
-      --bg:#0f1724;
-      --card:#0b1220;
-      --accent:#10b981;
-      --muted:#a8b3c0;
-    }
-    html,body{
-      height:100%;margin:0;
-      font-family: "Vazirmatn", system-ui;
-      background:linear-gradient(180deg,var(--bg),#081021);
-      color:#e6eef6;
-      direction:rtl;
-    }
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#10b981;--muted:#a8b3c0;}
+    html,body{height:100%;margin:0;font-family:"Vazirmatn",system-ui;direction:rtl;
+      background:linear-gradient(180deg,var(--bg),#081021);color:#e6eef6;}
     .container{max-width:1100px;margin:28px auto;padding:18px}
     model-viewer{
       width:100%;height:70vh;min-height:420px;
       background:linear-gradient(180deg,#071428,#04101a);
       border-radius:10px;overflow:hidden;
     }
-    .loader {
-      position:absolute;inset:0;
-      display:flex;align-items:center;justify-content:center;
-      background:rgba(0,0,0,0.6);z-index:5;
-    }
-    .loader span {
-      border:4px solid transparent;border-top-color:var(--accent);
-      border-radius:50%;width:48px;height:48px;
-      animation:spin 1s linear infinite;
-    }
+    .loader{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+      background:rgba(0,0,0,0.6);z-index:5;}
+    .loader span{border:4px solid transparent;border-top-color:var(--accent);
+      border-radius:50%;width:48px;height:48px;animation:spin 1s linear infinite;}
     @keyframes spin{to{transform:rotate(360deg)}}
-    button.ar-btn {
-      background:var(--accent);color:#022;
-      padding:10px 16px;border:none;border-radius:8px;
-      font-weight:600;cursor:pointer;
+    button{
+      background:var(--accent);color:#022;padding:8px 14px;
+      border:none;border-radius:8px;font-weight:600;cursor:pointer;
     }
+    .controls{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
   </style>
 </head>
 <body>
 <div class="container">
-
-  <h1>🌟 نمایش AR — نسخه بهبود یافته</h1>
-  <p style="color:var(--muted)">برای بهترین نتیجه، در موبایل باز کنید و روی دکمه AR بزنید.</p>
+  <h1>🌟 AR چند مدلی</h1>
+  <p style="color:var(--muted)">برای تغییر مدل از دکمه‌های زیر استفاده کن.</p>
 
   <div style="position:relative">
     <div class="loader" id="loader"><span></span></div>
 
     <model-viewer id="mv"
       alt="3D model"
-      src="model.glb"
-      ios-src="model.usdz"
-      ar
-      ar-modes="webxr scene-viewer quick-look"
-      ar-placement="floor"
-      ar-scale="fixed"
+      ar ar-modes="webxr scene-viewer quick-look"
+      ar-placement="floor" ar-scale="fixed"
       camera-controls
       environment-image="https://modelviewer.dev/shared-assets/environments/moon_1k.hdr"
-      shadow-intensity="1"
-      shadow-softness="0.85"
-      exposure="1.2"
+      shadow-intensity="1" shadow-softness="0.85" exposure="1.2"
       loading="eager">
     </model-viewer>
   </div>
 
-  <div style="margin-top:16px">
-    <button class="ar-btn" onclick="document.getElementById('mv').activateAR();">
-      🚀 مشاهده در واقعیت افزوده
-    </button>
+  <div class="controls">
+    <button onclick="setModel('model.glb','model.usdz')">مدل ۱</button>
+    <button onclick="setModel('chair.glb','chair.usdz')">مدل ۲</button>
+    <button onclick="setModel('table.glb','table.usdz')">مدل ۳</button>
+    <button onclick="document.getElementById('mv').activateAR()">🚀 مشاهده AR</button>
   </div>
 </div>
 
 <script>
   const mv = document.getElementById('mv');
   const loader = document.getElementById('loader');
+
+  function setModel(glb, usdz){
+    loader.style.display = 'flex';
+    mv.setAttribute('src', glb);
+    mv.setAttribute('ios-src', usdz);
+  }
 
   mv.addEventListener('load', ()=>{
     loader.style.display = 'none';
@@ -91,6 +73,9 @@
   mv.addEventListener('error', ()=>{
     loader.innerHTML = "<p style='color:white'>⚠️ خطا در بارگذاری مدل</p>";
   });
+
+  // مدل پیش‌فرض
+  setModel('model.glb', 'model.usdz');
 </script>
 </body>
 </html>
