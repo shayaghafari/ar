@@ -91,12 +91,140 @@ https://templatemo.com/tm-594-nexus-flow
             </div>
         </div>
     </section>
+    <!-- لینک‌های باز کردن مدال‌ها -->
+    <div style="display:flex; gap:12px; flex-wrap:wrap; margin:32px 0; justify-content:center;">
+        <a href="#" class="cyber-button" onclick="openModal(1)">model 1</a>
+        <a href="#" class="cyber-button" onclick="openModal(2)">model 2</a>
+        <a href="#" class="cyber-button" onclick="openModal(3)">model 3</a>
+        <a href="#" class="cyber-button" onclick="openModal(4)">model 4</a>
+        <a href="#" class="cyber-button" onclick="openModal(5)">model 5</a>
+        <a href="#" class="cyber-button" onclick="openModal(6)">model 6</a>
+        <a href="#" class="cyber-button" onclick="openModal(7)">model 7</a>
+        <a href="#" class="cyber-button" onclick="openModal(8)">model 8</a>
+        <a href="#" class="cyber-button" onclick="openModal(9)">model 9</a>
+        <a href="#" class="cyber-button" onclick="openModal(10)">model 10</a>
+    </div>
+
+    <!-- ده مدال مشابه با مدل نمونه -->
+    <div id="modals-container">
+        <!-- مدال‌ها -->
+        <div id="modal1" class="custom-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.8); z-index:9999; justify-content:center; align-items:center;">
+            <div style="background:#222; padding:32px; border-radius:16px; width:80vw; height:80vh; max-width:900px; max-height:90vh; position:relative; display:flex; flex-direction:column; align-items:center;">
+                <button onclick="closeModal(1)" style="position:absolute; top:12px; right:16px; font-size:24px; background:none; border:none; color:#fff; cursor:pointer;">✕</button>
+                <h2 style="color:#fff;">model 1</h2>
+                <div style="flex:1; width:100%; display:flex; justify-content:center; align-items:center;">
+                    <model-viewer src="turbine.glb"  shadow-intensity="1" style="width:100%; height:100%;" exposure="1" environment-image="moon_lab_1k.hdr" camera-controls touch-action="pan-y" ar>                                     </model-viewer>
+                </div>
+            </div>
+        </div>
+        <div id="modal2" class="custom-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.8); z-index:9999; justify-content:center; align-items:center;">
+            <div style="background:#222; padding:32px; border-radius:16px; width:80vw; height:80vh; max-width:900px; max-height:90vh; position:relative; display:flex; flex-direction:column; align-items:center;">
+                <button onclick="closeModal(2)" style="position:absolute; top:12px; right:16px; font-size:24px; background:none; border:none; color:#fff; cursor:pointer;">✕</button>
+                <h2 style="color:#fff;">model 2</h2>
+                <div style="flex:1; width:100%; display:flex; justify-content:center; align-items:center;">
+                    <model-viewer src="drone.glb" shadow-intensity="2" style="width:100%; height:100%;" exposure="3" environment-image="moon_lab_1k.hdr" camera-controls touch-action="pan-y" ar></model-viewer>
+                </div>
+            </div>
+        </div>
+        <div id="modal3" class="custom-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.8); z-index:9999; justify-content:center; align-items:center;">
+            <div style="background:#222; padding:32px; border-radius:16px; width:80vw; height:80vh; max-width:900px; max-height:90vh; position:relative; display:flex; flex-direction:column; align-items:center;">
+                <button onclick="closeModal(3)" style="position:absolute; top:12px; right:16px; font-size:24px; background:none; border:none; color:#fff; cursor:pointer;">✕</button>
+                <h2 style="color:#fff;">model 3</h2>
+                <div style="flex:1; width:100%; display:flex; justify-content:center; align-items:center;">
+                    <model-viewer src="engine.glb" style="width:100%; height:100%;" exposure="5" environment-image="moon_lab_1k.hdr" camera-controls touch-action="pan-y" ar></model-viewer>
+                </div>
+            </div>
+        </div>
+        <div id="modal4" class="custom-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.8); z-index:9999; justify-content:center; align-items:center;">
+            <div style="background:#222; padding:32px; border-radius:16px; width:80vw; height:80vh; max-width:900px; max-height:90vh; position:relative; display:flex; flex-direction:column; align-items:center;">
+                <button onclick="closeModal(4)" style="position:absolute; top:12px; right:16px; font-size:24px; background:none; border:none; color:#fff; cursor:pointer;">✕</button>
+                <h2 style="color:#fff;">model 4</h2>
+                <div style="flex:1; width:100%; display:flex; justify-content:center; align-items:center;">
+                    <model-viewer src="DJI Avata 2 3D model.glb" max-camera-orbit="auto 90deg auto" style="width:100%; height:100%;" exposure="1" environment-image="moon_lab_1k.hdr" camera-controls touch-action="pan-y" ar></model-viewer>
+                </div>
+            </div>
+        </div>
+        <div id="modal5" class="custom-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.8); z-index:9999; justify-content:center; align-items:center;">
+            <div style="background:#222; padding:32px; border-radius:16px; width:80vw; height:80vh; max-width:900px; max-height:90vh; position:relative; display:flex; flex-direction:column; align-items:center;">
+                <button onclick="closeModal(5)" style="position:absolute; top:12px; right:16px; font-size:24px; background:none; border:none; color:#fff; cursor:pointer;">✕</button>
+                <h2 style="color:#fff;">model 5</h2>
+                <div style="flex:1; width:100%; display:flex; justify-content:center; align-items:center;">
+                    <model-viewer src="turbine.glb" style="width:100%; height:100%;" exposure="1" environment-image="moon_lab_1k.hdr" camera-controls touch-action="pan-y" ar></model-viewer>
+                </div>
+            </div>
+        </div>
+        <div id="modal6" class="custom-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.8); z-index:9999; justify-content:center; align-items:center;">
+            <div style="background:#222; padding:32px; border-radius:16px; width:80vw; height:80vh; max-width:900px; max-height:90vh; position:relative; display:flex; flex-direction:column; align-items:center;">
+                <button onclick="closeModal(6)" style="position:absolute; top:12px; right:16px; font-size:24px; background:none; border:none; color:#fff; cursor:pointer;">✕</button>
+                <h2 style="color:#fff;">model 6</h2>
+                <div style="flex:1; width:100%; display:flex; justify-content:center; align-items:center;">
+                    <model-viewer src="turbine.glb" style="width:100%; height:100%;" exposure="1" environment-image="moon_lab_1k.hdr" camera-controls touch-action="pan-y" ar></model-viewer>
+                </div>
+            </div>
+        </div>
+        <div id="modal7" class="custom-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.8); z-index:9999; justify-content:center; align-items:center;">
+            <div style="background:#222; padding:32px; border-radius:16px; width:80vw; height:80vh; max-width:900px; max-height:90vh; position:relative; display:flex; flex-direction:column; align-items:center;">
+                <button onclick="closeModal(7)" style="position:absolute; top:12px; right:16px; font-size:24px; background:none; border:none; color:#fff; cursor:pointer;">✕</button>
+                <h2 style="color:#fff;">model 7</h2>
+                <div style="flex:1; width:100%; display:flex; justify-content:center; align-items:center;">
+                    <model-viewer src="turbine.glb" style="width:100%; height:100%;" exposure="1" environment-image="moon_lab_1k.hdr" camera-controls touch-action="pan-y" ar></model-viewer>
+                </div>
+            </div>
+        </div>
+        <div id="modal8" class="custom-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.8); z-index:9999; justify-content:center; align-items:center;">
+            <div style="background:#222; padding:32px; border-radius:16px; width:80vw; height:80vh; max-width:900px; max-height:90vh; position:relative; display:flex; flex-direction:column; align-items:center;">
+                <button onclick="closeModal(8)" style="position:absolute; top:12px; right:16px; font-size:24px; background:none; border:none; color:#fff; cursor:pointer;">✕</button>
+                <h2 style="color:#fff;">model 8</h2>
+                <div style="flex:1; width:100%; display:flex; justify-content:center; align-items:center;">
+                    <model-viewer src="turbine.glb" style="width:100%; height:100%;" exposure="1" environment-image="moon_lab_1k.hdr" camera-controls touch-action="pan-y" ar></model-viewer>
+                </div>
+            </div>
+        </div>
+        <div id="modal9" class="custom-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.8); z-index:9999; justify-content:center; align-items:center;">
+            <div style="background:#222; padding:32px; border-radius:16px; width:80vw; height:80vh; max-width:900px; max-height:90vh; position:relative; display:flex; flex-direction:column; align-items:center;">
+                <button onclick="closeModal(9)" style="position:absolute; top:12px; right:16px; font-size:24px; background:none; border:none; color:#fff; cursor:pointer;">✕</button>
+                <h2 style="color:#fff;">model 9</h2>
+                <div style="flex:1; width:100%; display:flex; justify-content:center; align-items:center;">
+                    <model-viewer src="turbine.glb" style="width:100%; height:100%;" exposure="1" environment-image="moon_lab_1k.hdr" camera-controls touch-action="pan-y" ar></model-viewer>
+                </div>
+            </div>
+        </div>
+        <div id="modal10" class="custom-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.8); z-index:9999; justify-content:center; align-items:center;">
+            <div style="background:#222; padding:32px; border-radius:16px; width:80vw; height:80vh; max-width:900px; max-height:90vh; position:relative; display:flex; flex-direction:column; align-items:center;">
+                <button onclick="closeModal(10)" style="position:absolute; top:12px; right:16px; font-size:24px; background:none; border:none; color:#fff; cursor:pointer;">✕</button>
+                <h2 style="color:#fff;">model 10</h2>
+                <div style="flex:1; width:100%; display:flex; justify-content:center; align-items:center;">
+                    <model-viewer src="turbine.glb" style="width:100%; height:100%;" exposure="1" environment-image="moon_lab_1k.hdr" camera-controls touch-action="pan-y" ar></model-viewer>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- اسکریپت باز و بسته کردن مدال‌ها -->
+    <script>
+    function openModal(num) {
+      for(let i=1;i<=10;i++) document.getElementById('modal'+i).style.display = 'none';
+      document.getElementById('modal'+num).style.display = 'flex';
+    }
+    function closeModal(num) {
+      document.getElementById('modal'+num).style.display = 'none';
+    }
+
+    // باز کردن مدال با توجه به پارامتر URL
+    window.onload = function() {
+      const params = new URLSearchParams(window.location.search);
+      const modalNum = params.get('modal');
+      if (modalNum && document.getElementById('modal'+modalNum)) {
+        openModal(modalNum);
+      }
+    }
+    </script>
 <div id="modalIR" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.8); z-index:9999; justify-content:center; align-items:center;">
     <div style="background:#222; padding:32px; border-radius:16px; width:80vw; height:80vh; max-width:900px; max-height:90vh; position:relative; display:flex; flex-direction:column; align-items:center;">
         <button id="closeModalIR" style="position:absolute; top:12px; right:16px; font-size:24px; background:none; border:none; color:#fff; cursor:pointer;">✕</button>
         <h2 style="color:#fff;">AR Viewer</h2>
         <div style="flex:1; width:100%; display:flex; justify-content:center; align-items:center;">
-            <model-viewer src="untitled.glb" style="width:100%; height:100%;"  environment-image="moon_lab_1k.hdr" camera-controls touch-action="pan-y" ar></model-viewer>
+            <model-viewer src="turbine.glb" style="width:100%; height:100%;"  exposure="1"  environment-image="moon_lab_1k.hdr" camera-controls touch-action="pan-y" ar></model-viewer>
         </div>
     </div>
 </div>
@@ -316,7 +444,7 @@ https://templatemo.com/tm-594-nexus-flow
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2025 Rasam Smart AR. All rights reserved.</p>
-                <p class="footer-credit">Brought to you by <a href="https://templatemo.com" target="_blank" rel="noopener nofollow">TemplateMo</a></p>
+                <p class="footer-credit"> <a href="#" target="_blank" rel="noopener nofollow"></a></p>
             </div>
         </div>
     </footer>
